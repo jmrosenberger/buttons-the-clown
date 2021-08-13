@@ -1,13 +1,13 @@
-import { getRequests, deleteRequest } from "./dataAccess.js"
+import { getReservations, deleteReservation } from "./dataAccess.js"
 
 
 
 const mainContainer = document.querySelector("#container")
 
 mainContainer.addEventListener("click", click => {
-    if (click.target.id.startsWith("request--")) {
-        const [,requestId] = click.target.id.split("--")
-        deleteRequest(parseInt(requestId))
+    if (click.target.id.startsWith("reservation--")) {
+        const [,reservationId] = click.target.id.split("--")
+        deleteReservation(parseInt(reservationId))
     }
 })
 
@@ -22,13 +22,13 @@ mainContainer.addEventListener("click", click => {
 // Since it is wrapped with a <ul> element, make each one an <li> element showing only the description of the request to start.
 
 
-const convertRequestToListElement = (request) => {
+const convertReservationToListElement = (reservation) => {
     return ` 
         <li class="request__list">&#128736; 	
         &#128119;
-            ${request.description}
-            <button class="request__delete"
-                    id="request--${request.id}">
+            ${reservation.description}
+            <button class="reservation__delete"
+                    id="reservation--${reservation.id}">
                 Delete
             </button>
         </li>
@@ -45,13 +45,13 @@ const convertRequestToListElement = (request) => {
 
 
 
-export const Requests = () => {
-    const requests = getRequests()
+export const Reservations = () => {
+    const reservations = getReservations()
 
     let html = `
-        <ul class="request__container">
+        <ul class="reservation__container">
             ${
-                requests.map(convertRequestToListElement).join("")
+                reservations.map(convertReservationToListElement).join("")
             }
         </ul>
     `

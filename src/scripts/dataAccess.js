@@ -2,7 +2,7 @@
 
 
 const applicationState = {
-    requests: []
+    reservations: []
 
 }
 
@@ -15,13 +15,13 @@ const mainContainer = document.querySelector("#container")
 const API = "http://localhost:8088"
 
 
-export const fetchRequests = () => {
-    return fetch(`${API}/requests`)
+export const fetchReservations = () => {
+    return fetch(`${API}/reservations`)
         .then(response => response.json())
         .then(
-            (serviceRequests) => {
+            (reservationRequests) => {
                 // Store the external state in application state
-                applicationState.requests = serviceRequests
+                applicationState.reservations = reservationRequests
             }
         )
 }
@@ -31,25 +31,25 @@ export const fetchRequests = () => {
 
 
 
-export const getRequests = () => {
-    return applicationState.requests.map(request => ({...request}))
+export const getReservations = () => {
+    return applicationState.reservations.map(reservation => ({...reservation}))
 }
 
 
 
 
 
-export const sendRequest = (userServiceRequest) => {
+export const sendReservation = (userReservationRequest) => {
     const fetchOptions = {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(userServiceRequest)
+        body: JSON.stringify(userReservationRequest)
     }
 
 
-    return fetch(`${API}/requests`, fetchOptions)
+    return fetch(`${API}/reservations`, fetchOptions)
         .then(response => response.json())
         .then(() => {
             mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
@@ -59,8 +59,8 @@ export const sendRequest = (userServiceRequest) => {
 
 
 
-export const deleteRequest = (id) => {
-    return fetch(`${API}/requests/${id}`, { method: "DELETE" })
+export const deleteReservation = (id) => {
+    return fetch(`${API}/reservations/${id}`, { method: "DELETE" })
         .then(
             () => {
                 mainContainer.dispatchEvent(new CustomEvent("stateChanged"))

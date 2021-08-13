@@ -1,5 +1,5 @@
-import { fetchRequests } from "./dataAccess.js"
-import { SinkRepair } from "./SinkRepair.js"
+import { fetchReservations } from "./dataAccess.js"
+import { ButtonsTheClown } from "./ButtonsTheClown.js"
 
 
 
@@ -16,9 +16,9 @@ mainContainer.addEventListener(
 
 
 const render = () => {
-    fetchRequests().then(
+    fetchReservations().then(
         () => {
-            mainContainer.innerHTML = SinkRepair()
+            mainContainer.innerHTML = ButtonsTheClown()
 
         }
     )

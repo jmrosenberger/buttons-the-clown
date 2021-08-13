@@ -1,20 +1,20 @@
-import { ServiceForm } from "./ServiceForm.js"
-import { Requests } from "./Requests.js"
+import { FilledReservations } from "./FilledReservations.js"
+import { Reservations } from "./Reservations.js"
 
 
 
 
 
-export const SinkRepair = () => {
+export const ButtonsTheClown = () => {
     return `
-        <h1>Maude and Merle's Sink Repair</h1>
+        <h1>Buttons The Clown</h1>
         <section class="serviceForm">
-            ${ServiceForm()}
+            ${FilledReservations()}
         </section>
 
         <section class="serviceRequests">
             <h2>Service Requests</h2>
-            ${Requests()}
+            ${Reservations()}
         </section>
     `
 }

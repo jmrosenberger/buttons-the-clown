@@ -25,31 +25,31 @@ input {
 
 
 
-.request__container {
+.reservation__container {
     border: 1.5px dotted olivedrab;
     border-radius: 4px;
     margin: 1.25rem 1.5rem;
     padding: 0px;
 }
 
-.request__list {
+.reservation__list {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px;
 }
 
-.request__delete {
+.reservation__delete {
     background: olivedrab;
     color: goldenrod;
     border: 1px inset goldenrod;
     border-radius: 2px;
 }
 
-.request__list:nth-child(even) {
+.reservation__list:nth-child(even) {
     background: #ccc;
 }
 
-.request__list:nth-child(odd) {
+.reservation__list:nth-child(odd) {
     background: #fff;
 }
