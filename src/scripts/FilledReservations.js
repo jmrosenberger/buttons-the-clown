@@ -1,10 +1,10 @@
-import { sendRequest } from "./dataAccess.js"
+import { sendReservation } from "./dataAccess.js"
 
 
 const mainContainer = document.querySelector("#container")
 
 mainContainer.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id === "submitRequest") {
+    if (clickEvent.target.id === "submitReservation") {
         // Get what the user typed into the form fields
         const userDescription = document.querySelector("input[name='serviceDescription']").value
         const userAddress = document.querySelector("input[name='serviceAddress']").value
@@ -20,7 +20,7 @@ mainContainer.addEventListener("click", clickEvent => {
         }
 
         // Send the data to the API for permanent storage
-        sendRequest(dataToSendToAPI)
+        sendReservation(dataToSendToAPI)
     }
 })
 
@@ -28,7 +28,7 @@ mainContainer.addEventListener("click", clickEvent => {
 
 
 
-export const ServiceForm = () => {
+export const FilledReservations = () => {
     let html = `
         <div class="field">
             <label class="label" for="serviceDescription">Description</label>
@@ -47,7 +47,7 @@ export const ServiceForm = () => {
             <input type="date" name="serviceDate" class="input" />
         </div>
 
-        <button class="button" id="submitRequest">Submit Request</button>
+        <button class="button" id="submitReservation">Submit Reservation</button>
     `
 
     return html
