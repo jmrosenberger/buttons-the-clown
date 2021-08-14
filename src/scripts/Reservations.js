@@ -1,5 +1,4 @@
-import { getReservations, deleteReservation } from "./dataAccess.js"
-
+import { getReservations, deleteReservation, getClowns} from "./dataAccess.js"
 
 
 const mainContainer = document.querySelector("#container")
@@ -14,6 +13,12 @@ mainContainer.addEventListener("click", click => {
 
 
 
+
+
+
+const clowns = getClowns()
+
+
 // In the following code, you will need to define the function that will be passed to the map() method.
 
 
@@ -25,6 +30,18 @@ mainContainer.addEventListener("click", click => {
 const convertReservationToListElement = (reservation) => {
     return ` 
         <li class="reservation__list">	
+
+        <select class="clowns" id="clowns">
+    <option value="">Choose</option>
+    ${
+        clowns.map(
+            clown => {
+                return `<option value="${reservation.id}--${clown.id}">${clown.name}</option>`
+            }
+        ).join("")
+    }
+</select>
+
         &#129313; | Date Requested:
             ${reservation.neededBy} || 
             Length: 
@@ -35,7 +52,7 @@ const convertReservationToListElement = (reservation) => {
             ${reservation.parentName}
             <button class="reservation__delete"
                     id="reservation--${reservation.id}">
-                Delete
+                Deny
             </button>
         </li>
     `
@@ -46,6 +63,13 @@ const convertReservationToListElement = (reservation) => {
 // then you would update the code below to requests.map(convertRequestToListElement).
 
 
+mainContainer.addEventListener(
+    "change",
+    (event) => {
+        sendReservation(reservation)
+
+    }
+)
 
 
 

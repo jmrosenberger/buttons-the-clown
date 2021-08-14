@@ -2,8 +2,8 @@
 
 
 const applicationState = {
-    reservations: []
-
+    reservations: [],
+    clowns: [],
 }
 
 const mainContainer = document.querySelector("#container")
@@ -26,14 +26,44 @@ export const fetchReservations = () => {
         )
 }
 
+export const fetchClowns = () => {
+    return fetch(`${API}/clowns`)
+        .then(response => response.json())
+        .then(
+            (clownRequests) => {
+                // Store the external state in application state
+                applicationState.clowns = clownRequests
+            }
+        )
+}
+
+// export const fetchFilledReservations = () => {
+//     return fetch(`${API}/filledReservations`)
+//         .then(response => response.json())
+//         .then(
+//             (filledRequests) => {
+//                 // Store the external state in application state
+//                 applicationState.filledReservations = filledRequests
+//             }
+//         )
+// }
+
 
 
 
 
 
 export const getReservations = () => {
-    return applicationState.reservations.map(reservation => ({...reservation}))
+    return applicationState.reservations.map(reservation => ({ ...reservation }))
 }
+
+export const getClowns = () => {
+    return applicationState.clowns
+}
+
+// export const getFilledReservations = () => {
+//     return applicationState.filledReservations.map(filledReservation => ({ ...filledReservation }))
+// }
 
 
 

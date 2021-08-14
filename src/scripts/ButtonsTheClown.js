@@ -13,7 +13,7 @@ export const ButtonsTheClown = () => {
         </section>
 
         <section class="serviceRequests">
-            <h2>Service Requests</h2>
+            <h2>Performance Schedule</h2>
             ${Reservations()}
         </section>
     `
