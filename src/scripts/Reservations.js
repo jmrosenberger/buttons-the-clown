@@ -24,9 +24,15 @@ mainContainer.addEventListener("click", click => {
 
 const convertReservationToListElement = (reservation) => {
     return ` 
-        <li class="request__list">&#128736; 	
-        &#128119;
-            ${reservation.description}
+        <li class="reservation__list">	
+        &#129313; | Date Requested:
+            ${reservation.neededBy} || 
+            Length: 
+            ${reservation.lengthOfTime} hours ||
+            Address:
+            ${reservation.location} ||
+            Name Of Parent:
+            ${reservation.parentName}
             <button class="reservation__delete"
                     id="reservation--${reservation.id}">
                 Delete
