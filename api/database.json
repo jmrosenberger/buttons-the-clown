@@ -9,21 +9,6 @@
       "name": "Lollipop"
     }
   ],
-  "reservations": [
-    {
-      "parentName": "",
-      "childName": "",
-      "totalChildren": "",
-      "location": "",
-      "neededBy": "",
-      "lengthOfTime": "",
-      "id": 1
-    }
-  ],
-  "filledReservations": [
-    {
-      "clownId": "1--1",
-      "id": 1
-    }
-  ]
+  "reservations": [],
+  "filledReservations": []
 }
