@@ -1,4 +1,4 @@
-import { FilledReservations } from "./FilledReservations.js"
+import { ReservationForm } from "./ReservationForm.js"
 import { Reservations } from "./Reservations.js"
 
 
@@ -9,7 +9,7 @@ export const ButtonsTheClown = () => {
     return `
         <h1>Buttons The Clown</h1>
         <section class="serviceForm">
-            ${FilledReservations()}
+            ${ReservationForm()}
         </section>
 
         <section class="serviceRequests">
