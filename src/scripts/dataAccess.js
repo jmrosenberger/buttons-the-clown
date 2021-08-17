@@ -122,7 +122,7 @@ export const deleteReservation = (id) => {
 
 
 export const deleteFilledReservation = (id) => {
-    return fetch(`${API}/filledreservations/${id}`, { method: "DELETE" })
+    return fetch(`${API}/filledReservations/${id}`, { method: "DELETE" })
         .then(
             () => {
                 mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
