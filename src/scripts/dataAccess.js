@@ -4,6 +4,7 @@
 const applicationState = {
     reservations: [],
     clowns: [],
+    filledReservations: []
 }
 
 const mainContainer = document.querySelector("#container")
@@ -37,16 +38,16 @@ export const fetchClowns = () => {
         )
 }
 
-// export const fetchFilledReservations = () => {
-//     return fetch(`${API}/filledReservations`)
-//         .then(response => response.json())
-//         .then(
-//             (filledRequests) => {
-//                 // Store the external state in application state
-//                 applicationState.filledReservations = filledRequests
-//             }
-//         )
-// }
+export const fetchFilledReservations = () => {
+    return fetch(`${API}/filledReservations`)
+        .then(response => response.json())
+        .then(
+            (filledRequests) => {
+                // Store the external state in application state
+                applicationState.filledReservations = filledRequests
+            }
+        )
+}
 
 
 
@@ -54,16 +55,18 @@ export const fetchClowns = () => {
 
 
 export const getReservations = () => {
-    return applicationState.reservations.map(reservation => ({ ...reservation }))
+    return applicationState.reservations
+    // .map(reservation => ({ ...reservation }))
 }
 
 export const getClowns = () => {
     return applicationState.clowns
 }
 
-// export const getFilledReservations = () => {
-//     return applicationState.filledReservations.map(filledReservation => ({ ...filledReservation }))
-// }
+export const getFilledReservations = () => {
+    return applicationState.filledReservations
+    // .map(filledReservation => ({ ...filledReservation }))
+}
 
 
 
@@ -85,6 +88,25 @@ export const sendReservation = (userReservationRequest) => {
             mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
         })
 }
+
+
+export const sendFilledReservation = (clownSelection) => {
+    const fetchOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(clownSelection)
+    }
+
+
+    return fetch(`${API}/filledReservations`, fetchOptions)
+        .then(response => response.json())
+        .then(() => {
+            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+        })
+}
+
 
 
 

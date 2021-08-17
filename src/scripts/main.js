@@ -1,4 +1,4 @@
-import { fetchReservations } from "./dataAccess.js"
+import { fetchClowns, fetchFilledReservations, fetchReservations } from "./dataAccess.js"
 import { ButtonsTheClown } from "./ButtonsTheClown.js"
 
 
@@ -16,7 +16,10 @@ mainContainer.addEventListener(
 
 
 const render = () => {
-    fetchReservations().then(
+    fetchReservations()
+    .then(fetchClowns)
+    .then(fetchFilledReservations)
+    .then(
         () => {
             mainContainer.innerHTML = ButtonsTheClown()
 

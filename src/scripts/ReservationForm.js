@@ -32,7 +32,7 @@ mainContainer.addEventListener("click", clickEvent => {
 
 
 
-export const FilledReservations = () => {
+export const ReservationForm = () => {
     let html = `
         <div class="field">
             <label class="label" for="parentName">Name of Parent</label>

@@ -1,47 +1,50 @@
-import { getReservations, deleteReservation, getClowns} from "./dataAccess.js"
-
+import { getReservations, deleteReservation, getClowns, getFilledReservations, sendFilledReservation } from "./dataAccess.js"
 
 const mainContainer = document.querySelector("#container")
 
+
+
+mainContainer.addEventListener(
+    "change",
+    (event) => {
+        if (event.target.id.startsWith("selectedClown")) {
+            const [, clownId] = click.target.value.split("--")
+            const clownSelection = document.querySelector("option[value='clownId']").value
+            const dataToSendToAPI = {
+                clownId: clownSelection
+            }
+            sendFilledReservation(parseInt(dataToSendToAPI))
+        }
+    }
+)
+
+
+
 mainContainer.addEventListener("click", click => {
     if (click.target.id.startsWith("reservation--")) {
-        const [,reservationId] = click.target.id.split("--")
+        const [, reservationId] = click.target.id.split("--")
         deleteReservation(parseInt(reservationId))
     }
 })
 
 
-
-
-
-
-
-const clowns = getClowns()
-
-
 // In the following code, you will need to define the function that will be passed to the map() method.
-
-
-
 // The function you write will convert each service request object into HTML representations. 
 // Since it is wrapped with a <ul> element, make each one an <li> element showing only the description of the request to start.
 
-
 const convertReservationToListElement = (reservation) => {
+    const clowns = getClowns()
     return ` 
         <li class="reservation__list">	
-
         <select class="clowns" id="clowns">
-    <option value="">Choose</option>
-    ${
-        clowns.map(
-            clown => {
-                return `<option value="${reservation.id}--${clown.id}">${clown.name}</option>`
-            }
-        ).join("")
-    }
-</select>
-
+    <option value="" >Choose</option>
+    ${clowns.map(
+        clown => {
+            return `<option id="selectedClown" value="${clown.id}--${reservation.id}" >${clown.name}</option>`
+        }
+    ).join("")
+        }
+        </select>
         &#129313; | Date Requested:
             ${reservation.neededBy} || 
             Length: 
@@ -57,35 +60,18 @@ const convertReservationToListElement = (reservation) => {
         </li>
     `
 }
-
-
 // For example, if you write a function named convertRequestToListElement, 
 // then you would update the code below to requests.map(convertRequestToListElement).
-
-
-mainContainer.addEventListener(
-    "change",
-    (event) => {
-        sendReservation(reservation)
-
-    }
-)
-
-
-
-
-
 export const Reservations = () => {
     const reservations = getReservations()
+    const filledReservations = getFilledReservations()
 
     let html = `
         <ul class="reservation__container">
-            ${
-                reservations.map(convertReservationToListElement).join("")
-            }
+            ${reservations.map(convertReservationToListElement).join("")
+        }
         </ul>
     `
-
     return html
 }
 

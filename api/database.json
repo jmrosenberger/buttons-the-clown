@@ -11,14 +11,19 @@
   ],
   "reservations": [
     {
-      "parentName": "Angel Keltner",
-      "childName": "Angel Keltner",
-      "totalChildren": "5",
-      "location": "1015 Dozier Place",
-      "neededBy": "2021-08-16",
-      "lengthOfTime": "2",
+      "parentName": "",
+      "childName": "",
+      "totalChildren": "",
+      "location": "",
+      "neededBy": "",
+      "lengthOfTime": "",
       "id": 1
     }
   ],
-  "filledReservations": []
+  "filledReservations": [
+    {
+      "clownId": "1--1",
+      "id": 1
+    }
+  ]
 }
