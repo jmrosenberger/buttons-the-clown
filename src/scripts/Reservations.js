@@ -2,45 +2,37 @@ import { getReservations, deleteReservation, getClowns, getFilledReservations, d
 
 const mainContainer = document.querySelector("#container")
 
-
-
 mainContainer.addEventListener(
     "change",
     (event) => {
         console.log(event.target.value)
         if (event.target.id === "clownsClown") {
-            const [, clownSelection] = event.target.value.split("--")
+            const [filledReservationId, clownSelection] = event.target.value.split("--")
             const dataToSendToAPI = {
-             
+                reservationId: parseInt(filledReservationId), 
                 clownId: parseInt(clownSelection),
                 timestamp: new Date()
 
             }
             sendFilledReservation(dataToSendToAPI)
-        }
-    }
-)
-
-
-
+        }})
+    
 mainContainer.addEventListener("click", click => {
+   
     if (click.target.id.startsWith("reservation--")) {
         const [, reservationId] = click.target.id.split("--")
-        let filledReservationId = reservationId
         deleteReservation(parseInt(reservationId))
-        deleteFilledReservation(parseInt(filledReservationId))
+        // let filledReservationId = reservationId
+        // const filledReservations = getFilledReservations()
+        // const filledId = filledReservations.reservationId
+        // if (filledId.find() === reservationId){
+        //     deleteFilledReservation(parseInt(filledId))
+        // }
     }
 })
-
-
-
 // In the following code, you will need to define the function that will be passed to the map() method.
 // The function you write will convert each service request object into HTML representations. 
 // Since it is wrapped with a <ul> element, make each one an <li> element showing only the description of the request to start.
-
-
-
-
 
 const convertReservationToListElement = (reservation) => {
     const clowns = getClowns()
@@ -70,17 +62,10 @@ const convertReservationToListElement = (reservation) => {
         </li>
     `
 }
-
-
-
 // For example, if you write a function named convertRequestToListElement, 
 // then you would update the code below to requests.map(convertRequestToListElement).
-
-
-
 export const Reservations = () => {
     const reservations = getReservations()
-    const filledReservations = getFilledReservations()
 
     let html = `
         <ul class="reservation__container">
